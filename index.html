@@ -318,19 +318,22 @@
     <div class="menu-grid">
       <button class="menu-btn" onclick="startQuiz('rhetoric')">
         📣 Rhetoric & Appeals
-        <span>Ethos, Pathos, Logos & structural devices</span>
+        <span>Ethos, Pathos, Logos & Stylistic Devices</span>
       </button>
       <button class="menu-btn" onclick="startQuiz('comprehension')">
         🧩 Reading Frameworks
-        <span>Text connections, Thick/Thin & SWBSTF summaries</span>
+        <span>Connections, Thick/Thin & Theme Rules</span>
       </button>
       <button class="menu-btn" onclick="startQuiz('vocab')">
         📖 Vocabulary Domains
-        <span>Context clues, Dynamic characters & academic terms</span>
+        <span>Context Clues, Character Dev & Academic Words</span>
       </button>
-      <button class="menu-btn" style="border-color: #ffd6e8;" onclick="switchScreen('shop-screen')">
-        🧸 The Virtual NeeDoh Shop
-        <span>Trade your practice currency for digital novelties</span>
+      <button class="menu-btn" style="border-color: #2dd4bf;" onclick="startQuiz('grammar')">
+        ✏️ Grammar Playground
+        <span>FANBOYS, Adjectives & Serial Commas</span>
+      </button>
+      <button class="menu-btn" style="border-color: #ffd6e8; grid-column: span 2;" onclick="switchScreen('shop-screen')">
+        🧸 The Virtual NeeDoh Shop — Spend Your Saved Points!
       </button>
     </div>
   </div>
@@ -362,7 +365,7 @@
 
 <script>
   // =========================================================
-  // CORE DATA INFRASTRUCTURE
+  // MAX EXPANDED REVIEWS PATH DATABASE
   // =========================================================
   const DATA = {
     rhetoric: [
@@ -379,6 +382,18 @@
         feedback: "Ethos builds trust using credibility or character! Pointing out professional licensing and twenty years of experience immediately establishes authority."
       },
       {
+        cat: "Rhetorical Appeals — Ethos",
+        q: "Which statement represents a speaker trying to build their ETHOS appeal?",
+        choices: [
+          "Donating to this shelter will fill your heart with immense joy and peace.",
+          "Our rescue program has been vetted and endorsed by the National Animal Welfare Board for five straight years.",
+          "Every 15 minutes, another animal is abandoned on municipal city streets.",
+          "If you turn your back on these pets today, they will have nowhere else to hide."
+        ],
+        correct: 1,
+        feedback: "Endorsements from national safety boards verify a group's credibility and authority, making it an excellent Ethos argument!"
+      },
+      {
         cat: "Rhetorical Appeals — Pathos",
         q: "An advertisement features a picture of a lonely, shivering puppy in the rain while sad music plays. What appeal is this using?",
         choices: [
@@ -389,20 +404,140 @@
         ],
         correct: 1,
         feedback: "Pathos hooks into emotions! Sad imagery, vulnerable subjects, and melancholy audio are intentional methods used to pull at our hearts."
+      },
+      {
+        cat: "Rhetorical Appeals — Pathos",
+        q: "Identify the example that relies heavily on a PATHOS appeal:",
+        choices: [
+          "Deforestation rates have risen by 12% across central zones over the past decade.",
+          "Imagine waking up to find the beautiful forest behind your house turned to ash and grey dust overnight.",
+          "The Forest Service Department outlines these rules in Booklet 4A.",
+          "Rangers undergo 300 hours of wildland fire safety training prior to field assignment."
+        ],
+        correct: 1,
+        feedback: "Using descriptive words like 'turned to ash and grey dust' forces the listener to experience sudden shock and sadness, hitting their Pathos engine."
+      },
+      {
+        cat: "Rhetorical Appeals — Logos",
+        q: "Identify the option that relies cleanly on LOGOS:",
+        choices: [
+          "My grandmother always said that eating an apple an hour keeps your humors well balanced.",
+          "If you don't buy this home security system tonight, your family will be completely exposed to immediate danger.",
+          "According to data from the National Highway Traffic Safety Admin, wearing seatbelts reduces injury risks by 45%.",
+          "Our ancestors fought bravely for these fields; do not let their memory dissolve away."
+        ],
+        correct: 2,
+        feedback: "Logos uses logic, numbers, and facts! Citing structured statistics from an official administration is an analytical data appeal."
+      },
+      {
+        cat: "Rhetorical Appeals — Logos",
+        q: "Which argument is built on a solid LOGOS framework?",
+        choices: [
+          "Switching to LED bulbs saves an average of $140 per year on electric bills, paying for the bulb's cost in three months.",
+          "I have been an electrician for thirty years, and I strictly install these exact fixtures.",
+          "Dark rooms are creepy and depressing; bring light back into your dark life today!",
+          "Do it for the environment; our beautiful planet is crying out for green upgrades."
+        ],
+        correct: 0,
+        feedback: "This choice uses strict mathematical calculations ($140 savings, 3-month payoff windows) to logically justify a purchase decision."
+      },
+      {
+        cat: "Rhetorical Devices — Parallel Structure",
+        q: "Which of the following sentences exhibits true PARALLEL STRUCTURE?",
+        choices: [
+          "During the summer, the teenager enjoyed swimming in lakes, hiking up steep mountains, and to cook open fires.",
+          "Our team needs to focus on tracking the metrics, analyzing the trends, and presenting the final discoveries.",
+          "She decided she would either run in the marathon or she might be choosing to take a long bicycle ride instead.",
+          "To complete the project, you must write a deep summary, drawing a map layout, and speak clearly."
+        ],
+        correct: 1,
+        feedback: "Parallel structure matches grammatical patterns! 'Tracking...', 'analyzing...', and 'presenting...' all match using the continuous '-ing' gerund form perfectly."
       }
     ],
     comprehension: [
       {
-        cat: "Connections — Text-to-Text (TTT)",
-        q: "Marcus notices that the primary conflict in the article about survival matches the struggles Brian faces in the novel 'Hatchet'. What connection is this?",
+        cat: "Connections — Text-to-Self",
+        q: "Review this response: 'This reminds me of when my family moved to a new apartment last winter and I had to walk into a cafeteria where I knew absolutely nobody.' What category of connection is this?",
         choices: [
-          "Text-to-Self (TTS)",
           "Text-to-World (TTW)",
           "Text-to-Text (TTT)",
-          "Text-to-Teacher (TTT)"
+          "Text-to-Self (TTS)",
+          "Text-to-Theme"
         ],
         correct: 2,
-        feedback: "Connecting text events or characters from one book straight to another book is a Text-to-Text link!"
+        feedback: "Phrases like 'this reminds me of when my family...' connect the text directly to personal, real-life individual experiences, making it a Text-to-Self connection."
+      },
+      {
+        cat: "Connections — Text-to-Text",
+        q: "Review this sentence: 'This reminds me of the main character in the novel Hatchet because both individuals must find a way to secure fresh water without tools.' What connection is this?",
+        choices: [
+          "Text-to-Self (TTS)",
+          "Text-to-Text (TTT)",
+          "Text-to-World (TTW)",
+          "Text-to-Strategy"
+        ],
+        correct: 1,
+        feedback: "This links the current book directly to an outside book ('Hatchet'), which means it is a Text-to-Text connection!"
+      },
+      {
+        cat: "Connections — Text-to-World",
+        q: "A student states: 'This reminds me of the documentary we watched about clean water shortages currently affecting towns in East Africa.' What connection is this?",
+        choices: [
+          "Text-to-World (TTW)",
+          "Text-to-Self (TTS)",
+          "Text-to-Text (TTT)",
+          "Text-to-Vocabulary"
+        ],
+        correct: 0,
+        feedback: "Connecting text events to global realities, news events, or documentaries represents a Text-to-World connection."
+      },
+      {
+        cat: "Questioning — Thin vs. Thick",
+        q: "Which question is a THICK question for a text about early immigration systems?",
+        choices: [
+          "In what calendar year did the island processing facility open?",
+          "What was the total dollar cost of an entry visa stamp in 1910?",
+          "How do the emotional sacrifices made by early families compare to modern challenges?",
+          "Who was the prime administrative officer running the facility?"
+        ],
+        correct: 2,
+        feedback: "Thick questions demand brainstorming, deep evaluation, and checking behind the lines! They can't be answered by hunting for a single literal word."
+      },
+      {
+        cat: "Questioning — Thin vs. Thick",
+        q: "Identify the option below that represents a THIN question:",
+        choices: [
+          "What is the main character's age in Chapter 1?",
+          "What motivates the antagonist to hide the key from his family?",
+          "How would the plot shift if the story took place in a modern futuristic city?",
+          "Why does the author use dark storm imagery during the resolution?"
+        ],
+        correct: 0,
+        feedback: "Finding the character's age requires searching for a quick fact stated directly on the page, making it a Thin question!"
+      },
+      {
+        cat: "Themes — Core Definitions",
+        q: "Which of the following statements represents a true rule about THEME?",
+        choices: [
+          "A theme is always a single vocabulary word like 'Friendship' or 'Jealousy'.",
+          "A theme is a full statement or lesson about life that the author reveals; it is never just one word.",
+          "The theme is a literal summary of the exact events that happened in the plot.",
+          "The theme is what the main character wants to buy at the end of the book."
+        ],
+        correct: 1,
+        feedback: "Theme Misconception Check! A theme is NOT a single word (that's a topic). A theme is a complete sentence revealing a universal truth about human nature."
+      },
+      {
+        cat: "Themes — Identification",
+        q: "Which choice represents a correctly formatted THEME?",
+        choices: [
+          "Honesty",
+          "Two brothers fighting over a magical treasure map in Oregon.",
+          "True bravery means standing up for others even when you feel completely terrified.",
+          "Don't lie to your parents."
+        ],
+        correct: 2,
+        feedback: "This is a universal sentence lesson. Note that option D is wrong because a theme shouldn't be formatted as direct advice or a command ('Don't do X')."
       }
     ],
     vocab: [
@@ -417,6 +552,104 @@
         ],
         correct: 1,
         feedback: "The clues 'despite the rowdy chaos' and 'calmly reviewing' signal that imperturbable represents staying beautifully composed under pressure!"
+      },
+      {
+        cat: "Vocabulary — Character Development",
+        q: "An author changes a character's traits from defensive in Chapter 1 to open and cooperative by Chapter 10. This reveals what concept?",
+        choices: [
+          "Static character attributes.",
+          "Dynamic character development.",
+          "Academic context clue patterns.",
+          "Text-to-Self narrative constraints."
+        ],
+        correct: 1,
+        feedback: "Dynamic characters evolve, adapt, and transform their mindsets as plot consequences hit them!"
+      },
+      {
+        cat: "Vocabulary — Academic Terms",
+        q: "If an essay prompt tells you to ANCHOR your argument, what is it asking you to do?",
+        choices: [
+          "Drop your paper into a recycling container.",
+          "Base or secure your claims firmly using verified text evidence and facts.",
+          "Write using only funny dialogue components.",
+          "Make sure your sentences use short word layouts."
+        ],
+        correct: 1,
+        feedback: "To anchor your claims means to pin them down securely with text citations so your argument doesn't drift away."
+      },
+      {
+        cat: "Vocabulary — Figurative Language",
+        q: "Identify the device used in this sentence: 'The cold winter wind slapped my face as soon as I stepped out.'",
+        choices: [
+          "Allusion",
+          "Personification",
+          "Academic Metaphor",
+          "FANBOYS Appeal"
+        ],
+        correct: 1,
+        feedback: "Giving a human physical action ('slapping') to an inanimate natural element (the wind) is personification."
+      }
+    ],
+    grammar: [
+      {
+        cat: "Grammar — Coordinating Adjectives",
+        q: "Which sentence uses a comma correctly between coordinating adjectives?",
+        choices: [
+          "The tall, brick building stood near the edge of town.",
+          "The energetic, playful puppy chased the tennis ball around the yard.",
+          "She wore a bright, winter coat during the snowstorm.",
+          "We walked down the long, dirt path toward the lake."
+        ],
+        correct: 1,
+        feedback: "Coordinating Adjectives Rule! If you can flip the adjectives around ('playful, energetic puppy') or put 'and' between them ('energetic and playful'), they require a comma!"
+      },
+      {
+        cat: "Grammar — Coordinating Adjectives",
+        q: "Why does the phrase 'the old wool sweater' NOT use a comma between the adjectives?",
+        choices: [
+          "Because 'old' and 'wool' are not coordinating; you cannot say 'the wool old sweater'.",
+          "Because adjectives describing clothes never receive punctuation markers.",
+          "Because the sentence is missing a FANBOYS conjunction word.",
+          "Because the noun 'sweater' is singular."
+        ],
+        correct: 0,
+        feedback: "These are cumulative adjectives! They must follow a specific structural order to make sense, so no comma is allowed."
+      },
+      {
+        cat: "Grammar — Conjunctions (FANBOYS)",
+        q: "Which sentence correctly uses a comma with a coordinating conjunction (FANBOYS) to join two independent clauses?",
+        choices: [
+          "The students wanted to go outside for recess, but the heavy downpour kept them indoors.",
+          "The students wanted to go outside for recess but, the heavy downpour kept them indoors.",
+          "The students wanted to go outside, for recess but the heavy downpour kept them indoors.",
+          "The students wanted to go outside for recess, but, the heavy downpour kept them indoors."
+        ],
+        correct: 0,
+        feedback: "When using a FANBOYS word to link two complete sentences, the comma goes immediately BEFORE the conjunction word, never after it."
+      },
+      {
+        cat: "Grammar — Conjunctions (FANBOYS)",
+        q: "Identify the sentence that does NOT need a comma before the conjunction:",
+        choices: [
+          "Sarah completed her entire science reading assignment and then went to softball practice.",
+          "Sarah completed her entire science reading assignment, for she wanted to go to softball practice.",
+          "Sarah completed her entire science reading assignment, so she could go to softball practice.",
+          "Sarah completed her entire science reading assignment, but she forgot her glove."
+        ],
+        correct: 0,
+        feedback: "No comma needed here! 'then went to softball practice' is not a complete sentence on its own, so it shouldn't have a comma before 'and'."
+      },
+      {
+        cat: "Grammar — Commas in a Series",
+        q: "Which option demonstrates the correct use of commas in a series, including the Oxford Comma?",
+        choices: [
+          "For breakfast I ate fluffy pancakes, scrambled eggs, and crispy bacon.",
+          "For breakfast I ate fluffy pancakes scrambled eggs, and crispy bacon.",
+          "For breakfast I ate fluffy pancakes, scrambled eggs and crispy bacon.",
+          "For breakfast I ate, fluffy pancakes, scrambled eggs, and crispy bacon."
+        ],
+        correct: 0,
+        feedback: "When listing three or more items, place a comma after every item, including the final one before 'and' (the Oxford Comma) to preserve clarity."
       }
     ]
   };
@@ -424,7 +657,9 @@
   const SHOP_ITEMS = [
     { id: "nd_classic", name: "Classic Neon NeeDoh 🧽", desc: "The legendary squish ball. Retro bright finish. Clears your head instantly.", cost: 20 },
     { id: "nd_shimmer", name: "Glitter Magic NeeDoh ✨", desc: "Infused with metallic galaxy swirls. Catches natural classroom light.", cost: 40 },
-    { id: "sq_axolotl", name: "Slow-Rise Axolotl Squishy 🦎", desc: "Extremely squishable. Takes 30 full seconds to return to shape.", cost: 60 }
+    { id: "sq_axolotl", name: "Slow-Rise Axolotl Squishy 🦎", desc: "Extremely squishable. Takes 30 full seconds to return to shape.", cost: 60 },
+    { id: "nd_cat", name: "Cool Cat NeeDoh Ball 🐱", desc: "Equipped with custom mini ears. Aerodynamically optimized to stay on desks.", cost: 80 },
+    { id: "sq_kraken", name: "Glow-in-the-Dark Kraken 🐙", desc: "Ultra-rare collector find. Charges up under direct desk lamps.", cost: 120 }
   ];
 
   // =========================================================
@@ -443,7 +678,7 @@
     try {
       localStorage.setItem(key, value);
     } catch (e) {
-      // Degrades cleanly if security systems block localStorage
+      // Fallback mode if localStorage is blocked
     }
   }
 
@@ -493,6 +728,7 @@
     let sourceQuestions = DATA[categoryKey];
     if (!sourceQuestions) return;
     
+    // Shuffle question array
     currentPool = [...sourceQuestions].sort(() => Math.random() - 0.5);
     currentQIndex = 0;
     switchScreen('quiz-screen');
@@ -503,7 +739,7 @@
     isAnswered = false;
     let qData = currentPool[currentQIndex];
     
-    document.getElementById('q-meta').textContent = `${qData.cat} • Card ${currentQIndex + 1}/${currentPool.length}`;
+    document.getElementById('q-meta').textContent = `${qData.cat} • Question ${currentQIndex + 1}/${currentPool.length}`;
     document.getElementById('q-text').textContent = qData.q;
     
     let fbBox = document.getElementById('feedback-box');
@@ -559,7 +795,7 @@
   function nextQuestion() {
     currentQIndex++;
     if (currentQIndex >= currentPool.length) {
-      alert(`🎯 Node complete! Excellent core training. Check your point balances!`);
+      alert(`🎯 Module complete! High five. Let's see what you can buy!`);
       goHome();
     } else {
       renderQuestion();
