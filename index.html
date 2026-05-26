@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✨ ELA Quest Zone — 7th Grade Core Skills ✨</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f5f3ff 0%, #edd8fc 100%);
+      --panel-bg: #ffffff;
+      --primary-purple: #9333ea;
+      --accent-hover: #a855f7;
+      --neon-pink: #ff6b9d;
+      --mint-green: #2dd4bf;
+      --soft-coral: #f97316;
+      --text-dark: #1e1b4b;
+      --text-muted: #6b7280;
+      --shadow-style: 0 12px 24px -4px rgba(147, 51, 234, 0.12), 0 4px 12px -2px rgba(147, 51, 234, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 750px;
+    }
+
+    header {
+      background: var(--panel-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-radius: 1.25rem;
+      box-shadow: var(--shadow-style);
+      margin-bottom: 1.5rem;
+      border: 3px solid #f3e8ff;
+    }
+
+    .logo-zone h1 {
+      font-size: 1.6rem;
+      color: var(--primary-purple);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-zone p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .stats-hub {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .stat-box {
+      background: #faf5ff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 1rem;
+      border: 2px solid #e9d5ff;
+    }
+
+    #wallet-disp { color: var(--soft-coral); }
+    #streak-disp { color: var(--neon-pink); }
+
+    .screen {
+      display: none;
+      background: var(--panel-bg);
+      padding: 2.25rem 2rem;
+      border-radius: 1.5rem;
+      border: 3px solid #f3e8ff;
+      box-shadow: var(--shadow-style);
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--primary-purple);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .menu-btn {
+      background: #ffffff;
+      border: 3px solid #e9d5ff;
+      color: var(--text-dark);
+      padding: 1.5rem 1.25rem;
+      border-radius: 1.25rem;
+      text-align: left;
+      font-size: 1.15rem;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--primary-purple);
+      transform: translateY(-4px);
+    }
+
+    .menu-btn span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    .nav-btn {
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 2px solid #e2e8f0;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .q-meta {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--neon-pink);
+      margin-bottom: 0.6rem;
+      font-weight: 800;
+    }
+
+    .q-text {
+      font-size: 1.25rem;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .choices-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .choice-btn {
+      background: #fdfdfd;
+      border: 2px solid #e2e8f0;
+      color: var(--text-dark);
+      padding: 1.1rem 1.25rem;
+      text-align: left;
+      border-radius: 1rem;
+      font-size: 1rem;
+    }
+
+    .choice-btn:hover:not(.locked) {
+      border-color: var(--primary-purple);
+      background: #faf5ff;
+    }
+
+    .choice-btn.correct {
+      background: #e6fffa !important;
+      border-color: var(--mint-green) !important;
+      color: #0d9488 !important;
+    }
+
+    .choice-btn.wrong {
+      background: #fff5f5 !important;
+      border-color: var(--neon-pink) !important;
+      color: #e11d48 !important;
+    }
+
+    .choice-btn.locked { cursor: not-allowed; }
+
+    .feedback-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: 1rem;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .feedback-box.show { display: block; }
+    .feedback-box.correct-fb { background: #f0fdf4; border: 2px solid #bbf7d0; color: #166534; }
+    .feedback-box.wrong-fb { background: #fff5f5; border: 2px solid #fecdd3; color: #991b1b; }
+
+    .action-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+    }
+
+    .primary-btn {
+      background: var(--primary-purple);
+      color: #ffffff;
+      border: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 800;
+      display: none;
+    }
+    .primary-btn.show { display: block; }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .shop-grid { grid-template-columns: 1fr; }
+    }
+
+    .shop-item {
+      background: #fcfbfe;
+      border: 2px solid #f3e8ff;
+      padding: 1.25rem;
+      border-radius: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .item-info h3 { font-size: 1.1rem; color: var(--text-dark); font-weight: 800; }
+    .item-info p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+    
+    .buy-btn {
+      background: #e2e8f0;
+      color: #64748b;
+      border: none;
+      padding: 0.65rem;
+      border-radius: 50px;
+      font-weight: 800;
+      width: 100%;
+    }
+    .buy-btn.affordable {
+      background: var(--soft-coral);
+      color: #ffffff;
+    }
+    .buy-btn.owned {
+      background: var(--mint-green);
+      color: #ffffff;
+      cursor: not-allowed;
+    }
+
+    .inventory-list {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 3px dashed #f3e8ff;
+    }
+
+    .inventory-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .inv-tag {
+      background: #faf5ff;
+      border: 2px solid #e9d5ff;
+      color: var(--primary-purple);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo-zone">
+      <h1 onclick="goHome()" style="cursor:pointer">✨ ELA Quest Zone</h1>
+      <p>7th Grade Core Skills Training</p>
+    </div>
+    <div class="stats-hub">
+      <div id="wallet-disp" class="stat-box">⭐ 0 pts</div>
+      <div id="streak-disp" class="stat-box">🔥 0</div>
+    </div>
+  </header>
+
+  <div id="home-screen" class="screen active">
+    <h2>Welcome Back, Explorer! 🚀</h2>
+    <p style="color: var(--text-muted);">Choose a challenge node below to earn points for virtual rewards.</p>
+    
+    <div class="menu-grid">
+      <button class="menu-btn" onclick="startQuiz('rhetoric')">
+        📣 Rhetoric & Appeals
+        <span>Ethos, Pathos, Logos & structural devices</span>
+      </button>
+      <button class="menu-btn" onclick="startQuiz('comprehension')">
+        🧩 Reading Frameworks
+        <span>Text connections, Thick/Thin & SWBSTF summaries</span>
+      </button>
+      <button class="menu-btn" onclick="startQuiz('vocab')">
+        📖 Vocabulary Domains
+        <span>Context clues, Dynamic characters & academic terms</span>
+      </button>
+      <button class="menu-btn" style="border-color: #ffd6e8;" onclick="switchScreen('shop-screen')">
+        🧸 The Virtual NeeDoh Shop
+        <span>Trade your practice currency for digital novelties</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="quiz-screen" class="screen">
+    <button class="nav-btn" onclick="goHome()">⬅️ Quit Session</button>
+    <div id="q-meta" class="q-meta">Category</div>
+    <div id="q-text" class="q-text">Loading question content...</div>
+    <div id="choices-stack" class="choices-stack"></div>
+    <div id="feedback-box" class="feedback-box"></div>
+    <div class="action-row">
+      <button id="next-btn" class="primary-btn" onclick="nextQuestion()">Next Question ➡️</button>
+    </div>
+  </div>
+
+  <div id="shop-screen" class="screen">
+    <button class="nav-btn" onclick="goHome()">⬅️ Back to Map</button>
+    <h2>The NeeDoh & Squishy Emporium 🧸</h2>
+    <p style="color: var(--text-muted); margin-bottom: 1rem;">Spend your practice points to claim colorful toys!</p>
+    
+    <div id="shop-grid" class="shop-grid"></div>
+
+    <div class="inventory-list">
+      <h3>Your Claimed Toy Vault</h3>
+      <div id="inventory-tags" class="inventory-tags">No items claimed yet. Go score some points!</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // =========================================================
+  // CORE DATA INFRASTRUCTURE
+  // =========================================================
+  const DATA = {
+    rhetoric: [
+      {
+        cat: "Rhetorical Appeals — Ethos",
+        q: "Which sentence relies primarily on ETHOS to persuade the reader?",
+        choices: [
+          "As a licensed pediatrician with over twenty years of clinical practice, I assure you this vaccine routine is safe.",
+          "Think of the innocent children who will suffer agonizing aches if we do not provide basic medical access today.",
+          "Statistical modeling shows that every single dollar spent on preventive care saves communities seven dollars later.",
+          "Our competitor's medicine has caused dynamic rashes in twelve reported cases across state lines last autumn."
+        ],
+        correct: 0,
+        feedback: "Ethos builds trust using credibility or character! Pointing out professional licensing and twenty years of experience immediately establishes authority."
+      },
+      {
+        cat: "Rhetorical Appeals — Pathos",
+        q: "An advertisement features a picture of a lonely, shivering puppy in the rain while sad music plays. What appeal is this using?",
+        choices: [
+          "Logos, because it proves puppies need shelter using outdoor physics metrics.",
+          "Pathos, because it targets the reader's emotions of pity, sadness, and empathy.",
+          "Ethos, because the puppy is an expert witness on local weather trends.",
+          "Parallel structure, because the rain matches the structural layout of the music."
+        ],
+        correct: 1,
+        feedback: "Pathos hooks into emotions! Sad imagery, vulnerable subjects, and melancholy audio are intentional methods used to pull at our hearts."
+      }
+    ],
+    comprehension: [
+      {
+        cat: "Connections — Text-to-Text (TTT)",
+        q: "Marcus notices that the primary conflict in the article about survival matches the struggles Brian faces in the novel 'Hatchet'. What connection is this?",
+        choices: [
+          "Text-to-Self (TTS)",
+          "Text-to-World (TTW)",
+          "Text-to-Text (TTT)",
+          "Text-to-Teacher (TTT)"
+        ],
+        correct: 2,
+        feedback: "Connecting text events or characters from one book straight to another book is a Text-to-Text link!"
+      }
+    ],
+    vocab: [
+      {
+        cat: "Vocabulary — Context Clues",
+        q: "Read this excerpt: 'Despite the rowdy chaos across the stadium layout, the referee remained IMPERTURBABLE, calmly reviewing the footage.' What does IMPERTURBABLE mean?",
+        choices: [
+          "Easily annoyed or highly sensitive to sudden movements.",
+          "Incapable of being upset, panicked, or agitated; steadily calm.",
+          "Completely blind or lacking basic visual accuracy metrics.",
+          "Dishonest and prone to altering rules for financial payout."
+        ],
+        correct: 1,
+        feedback: "The clues 'despite the rowdy chaos' and 'calmly reviewing' signal that imperturbable represents staying beautifully composed under pressure!"
+      }
+    ]
+  };
+
+  const SHOP_ITEMS = [
+    { id: "nd_classic", name: "Classic Neon NeeDoh 🧽", desc: "The legendary squish ball. Retro bright finish. Clears your head instantly.", cost: 20 },
+    { id: "nd_shimmer", name: "Glitter Magic NeeDoh ✨", desc: "Infused with metallic galaxy swirls. Catches natural classroom light.", cost: 40 },
+    { id: "sq_axolotl", name: "Slow-Rise Axolotl Squishy 🦎", desc: "Extremely squishable. Takes 30 full seconds to return to shape.", cost: 60 }
+  ];
+
+  // =========================================================
+  // SAFE DATABASE UTILITY (ANTI-CRASH)
+  // =========================================================
+  function getStorageItem(key, fallback) {
+    try {
+      let val = localStorage.getItem(key);
+      return val !== null ? val : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function setStorageItem(key, value) {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      // Degrades cleanly if security systems block localStorage
+    }
+  }
+
+  // =========================================================
+  // STATE MANAGEMENT
+  // =========================================================
+  let wallet = parseInt(getStorageItem('ela_wallet', '0'));
+  let currentStreak = 0;
+  let currentPool = [];
+  let currentQIndex = 0;
+  let isAnswered = false;
+  
+  let ownedItems = [];
+  try {
+    let parsed = JSON.parse(getStorageItem('ela_owned', '[]'));
+    ownedItems = Array.isArray(parsed) ? parsed : [];
+  } catch(e) {
+    ownedItems = [];
+  }
+
+  window.onload = function() {
+    refreshStats();
+    buildShopUI();
+  };
+
+  function refreshStats() {
+    let walletDisp = document.getElementById('wallet-disp');
+    let streakDisp = document.getElementById('streak-disp');
+    
+    if (walletDisp) walletDisp.textContent = `⭐ ${wallet} pts`;
+    if (streakDisp) streakDisp.textContent = `🔥 ${currentStreak}`;
+    
+    setStorageItem('ela_wallet', wallet);
+    setStorageItem('ela_owned', JSON.stringify(ownedItems));
+  }
+
+  function switchScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    let target = document.getElementById(id);
+    if (target) target.classList.add('active');
+    if (id === 'shop-screen') buildShopUI();
+  }
+
+  function goHome() { switchScreen('home-screen'); }
+
+  function startQuiz(categoryKey) {
+    let sourceQuestions = DATA[categoryKey];
+    if (!sourceQuestions) return;
+    
+    currentPool = [...sourceQuestions].sort(() => Math.random() - 0.5);
+    currentQIndex = 0;
+    switchScreen('quiz-screen');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    isAnswered = false;
+    let qData = currentPool[currentQIndex];
+    
+    document.getElementById('q-meta').textContent = `${qData.cat} • Card ${currentQIndex + 1}/${currentPool.length}`;
+    document.getElementById('q-text').textContent = qData.q;
+    
+    let fbBox = document.getElementById('feedback-box');
+    fbBox.className = "feedback-box";
+    fbBox.textContent = "";
+    
+    document.getElementById('next-btn').classList.remove('show');
+    
+    let stack = document.getElementById('choices-stack');
+    stack.innerHTML = "";
+    
+    const pref = ["A", "B", "C", "D"];
+    qData.choices.forEach((choiceText, index) => {
+      let btn = document.createElement('button');
+      btn.className = "choice-btn";
+      btn.innerHTML = `<strong style="color:var(--primary-purple); margin-right:0.4rem">${pref[index]}.</strong> ${choiceText}`;
+      btn.onclick = () => evaluateChoice(index, qData, btn);
+      stack.appendChild(btn);
+    });
+  }
+
+  function evaluateChoice(selectedIndex, questionData, clickedBtn) {
+    if (isAnswered) return;
+    isAnswered = true;
+    
+    document.querySelectorAll('.choice-btn').forEach(b => b.classList.add('locked'));
+    let fbBox = document.getElementById('feedback-box');
+    
+    if (selectedIndex === questionData.correct) {
+      clickedBtn.classList.add('correct');
+      currentStreak++;
+      
+      let pointsEarned = 10 + (currentStreak >= 3 ? 5 : 0);
+      wallet += pointsEarned;
+      
+      fbBox.innerHTML = `🎉 Correct choice! (+${pointsEarned} pts)<br>${questionData.feedback}`;
+      fbBox.className = "feedback-box show correct-fb";
+    } else {
+      clickedBtn.classList.add('wrong');
+      currentStreak = 0;
+      
+      let correctButton = document.querySelectorAll('.choice-btn')[questionData.correct];
+      if (correctButton) correctButton.classList.add('correct');
+      
+      fbBox.innerHTML = `✨ Good try! Let's examine:<br>${questionData.feedback}`;
+      fbBox.className = "feedback-box show wrong-fb";
+    }
+    
+    refreshStats();
+    document.getElementById('next-btn').classList.add('show');
+  }
+
+  function nextQuestion() {
+    currentQIndex++;
+    if (currentQIndex >= currentPool.length) {
+      alert(`🎯 Node complete! Excellent core training. Check your point balances!`);
+      goHome();
+    } else {
+      renderQuestion();
+    }
+  }
+
+  function buildShopUI() {
+    let grid = document.getElementById('shop-grid');
+    if (!grid) return;
+    grid.innerHTML = "";
+    
+    SHOP_ITEMS.forEach(item => {
+      let box = document.createElement('div');
+      box.className = "shop-item";
+      
+      let isOwned = ownedItems.includes(item.id);
+      let isAffordable = wallet >= item.cost;
+      
+      let stateClass = "buy-btn";
+      let btnLabel = `🛒 Collect (${item.cost} pts)`;
+      
+      if (isOwned) {
+        stateClass += " owned";
+        btnLabel = "🔒 Added to Collection Vault";
+      } else if (isAffordable) {
+        stateClass += " affordable";
+      }
+      
+      box.innerHTML = `
+        <div class="item-info">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+        </div>
+        <button class="${stateClass}" onclick="purchaseItem('${item.id}', ${item.cost}, ${isOwned}, ${isAffordable})">${btnLabel}</button>
+      `;
+      grid.appendChild(box);
+    });
+
+    let invBox = document.getElementById('inventory-tags');
+    if (!invBox) return;
+    
+    if (ownedItems.length === 0) {
+      invBox.textContent = "No items claimed yet. Go score some points!";
+    } else {
+      invBox.innerHTML = "";
+      ownedItems.forEach(id => {
+        let matchingData = SHOP_ITEMS.find(i => i.id === id);
+        if (matchingData) {
+          let span = document.createElement('span');
+          span.className = "inv-tag";
+          span.textContent = `${matchingData.name}`;
+          invBox.appendChild(span);
+        }
+      });
+    }
+  }
+
+  function purchaseItem(id, cost, owned, affordable) {
+    if (owned) return;
+    if (!affordable) {
+      alert("Keep practicing! You need more points to purchase this novelty item.");
+      return;
+    }
+    
+    wallet -= cost;
+    ownedItems.push(id);
+    refreshStats();
+    buildShopUI();
+    alert("🎁 Toy claimed! Check your Vault at the bottom of the page.");
+  }
+</script>
+
+</body>
+</html>
