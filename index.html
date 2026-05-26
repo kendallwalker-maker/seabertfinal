@@ -326,7 +326,7 @@
       </button>
       <button class="menu-btn" onclick="startQuiz('vocab')">
         📖 Vocabulary Domains
-        <span>Context Clues, Character Dev & Academic Words</span>
+        <span>Master Core Meanings & Context Identifications</span>
       </button>
       <button class="menu-btn" style="border-color: #2dd4bf;" onclick="startQuiz('grammar')">
         ✏️ Grammar Playground
@@ -365,7 +365,7 @@
 
 <script>
   // =========================================================
-  // MAX EXPANDED REVIEWS PATH DATABASE
+  // CORE QUESTION DATA BANK WITH EXACT VOCAB REVISIONS
   // =========================================================
   const DATA = {
     rhetoric: [
@@ -428,30 +428,6 @@
         ],
         correct: 2,
         feedback: "Logos uses logic, numbers, and facts! Citing structured statistics from an official administration is an analytical data appeal."
-      },
-      {
-        cat: "Rhetorical Appeals — Logos",
-        q: "Which argument is built on a solid LOGOS framework?",
-        choices: [
-          "Switching to LED bulbs saves an average of $140 per year on electric bills, paying for the bulb's cost in three months.",
-          "I have been an electrician for thirty years, and I strictly install these exact fixtures.",
-          "Dark rooms are creepy and depressing; bring light back into your dark life today!",
-          "Do it for the environment; our beautiful planet is crying out for green upgrades."
-        ],
-        correct: 0,
-        feedback: "This choice uses strict mathematical calculations ($140 savings, 3-month payoff windows) to logically justify a purchase decision."
-      },
-      {
-        cat: "Rhetorical Devices — Parallel Structure",
-        q: "Which of the following sentences exhibits true PARALLEL STRUCTURE?",
-        choices: [
-          "During the summer, the teenager enjoyed swimming in lakes, hiking up steep mountains, and to cook open fires.",
-          "Our team needs to focus on tracking the metrics, analyzing the trends, and presenting the final discoveries.",
-          "She decided she would either run in the marathon or she might be choosing to take a long bicycle ride instead.",
-          "To complete the project, you must write a deep summary, drawing a map layout, and speak clearly."
-        ],
-        correct: 1,
-        feedback: "Parallel structure matches grammatical patterns! 'Tracking...', 'analyzing...', and 'presenting...' all match using the continuous '-ing' gerund form perfectly."
       }
     ],
     comprehension: [
@@ -480,18 +456,6 @@
         feedback: "This links the current book directly to an outside book ('Hatchet'), which means it is a Text-to-Text connection!"
       },
       {
-        cat: "Connections — Text-to-World",
-        q: "A student states: 'This reminds me of the documentary we watched about clean water shortages currently affecting towns in East Africa.' What connection is this?",
-        choices: [
-          "Text-to-World (TTW)",
-          "Text-to-Self (TTS)",
-          "Text-to-Text (TTT)",
-          "Text-to-Vocabulary"
-        ],
-        correct: 0,
-        feedback: "Connecting text events to global realities, news events, or documentaries represents a Text-to-World connection."
-      },
-      {
         cat: "Questioning — Thin vs. Thick",
         q: "Which question is a THICK question for a text about early immigration systems?",
         choices: [
@@ -504,18 +468,6 @@
         feedback: "Thick questions demand brainstorming, deep evaluation, and checking behind the lines! They can't be answered by hunting for a single literal word."
       },
       {
-        cat: "Questioning — Thin vs. Thick",
-        q: "Identify the option below that represents a THIN question:",
-        choices: [
-          "What is the main character's age in Chapter 1?",
-          "What motivates the antagonist to hide the key from his family?",
-          "How would the plot shift if the story took place in a modern futuristic city?",
-          "Why does the author use dark storm imagery during the resolution?"
-        ],
-        correct: 0,
-        feedback: "Finding the character's age requires searching for a quick fact stated directly on the page, making it a Thin question!"
-      },
-      {
         cat: "Themes — Core Definitions",
         q: "Which of the following statements represents a true rule about THEME?",
         choices: [
@@ -526,68 +478,92 @@
         ],
         correct: 1,
         feedback: "Theme Misconception Check! A theme is NOT a single word (that's a topic). A theme is a complete sentence revealing a universal truth about human nature."
-      },
-      {
-        cat: "Themes — Identification",
-        q: "Which choice represents a correctly formatted THEME?",
-        choices: [
-          "Honesty",
-          "Two brothers fighting over a magical treasure map in Oregon.",
-          "True bravery means standing up for others even when you feel completely terrified.",
-          "Don't lie to your parents."
-        ],
-        correct: 2,
-        feedback: "This is a universal sentence lesson. Note that option D is wrong because a theme shouldn't be formatted as direct advice or a command ('Don't do X')."
       }
     ],
     vocab: [
       {
-        cat: "Vocabulary — Context Clues",
-        q: "Read this excerpt: 'Despite the rowdy chaos across the stadium layout, the referee remained IMPERTURBABLE, calmly reviewing the footage.' What does IMPERTURBABLE mean?",
+        cat: "Vocabulary Domains — Definition",
+        q: "A word/phrase where the word choices specifically tell us more about a character's personality or traits is a ______________ type of vocabulary word.",
         choices: [
-          "Easily annoyed or highly sensitive to sudden movements.",
-          "Incapable of being upset, panicked, or agitated; steadily calm.",
-          "Completely blind or lacking basic visual accuracy metrics.",
-          "Dishonest and prone to altering rules for financial payout."
+          "Character development",
+          "Contextual",
+          "Academic",
+          "Figurative language"
         ],
-        correct: 1,
-        feedback: "The clues 'despite the rowdy chaos' and 'calmly reviewing' signal that imperturbable represents staying beautifully composed under pressure!"
+        correct: 0,
+        feedback: "Correct! When an author uses vocabulary words to purposefully reveal adjustments, emotions, or values in an individual's character, it serves character development."
       },
       {
-        cat: "Vocabulary — Character Development",
-        q: "An author changes a character's traits from defensive in Chapter 1 to open and cooperative by Chapter 10. This reveals what concept?",
+        cat: "Vocabulary Domains — Definition",
+        q: "A word/phrase where the author uses similes, metaphors, or personification to compare two things is a ______________ type of vocabulary word.",
         choices: [
-          "Static character attributes.",
-          "Dynamic character development.",
-          "Academic context clue patterns.",
-          "Text-to-Self narrative constraints."
+          "Academic",
+          "Figurative language",
+          "Character development",
+          "Contextual"
         ],
         correct: 1,
-        feedback: "Dynamic characters evolve, adapt, and transform their mindsets as plot consequences hit them!"
+        feedback: "Correct! Similes, metaphors, idioms, and personification are all dynamic forms of figurative language."
       },
       {
-        cat: "Vocabulary — Academic Terms",
-        q: "If an essay prompt tells you to ANCHOR your argument, what is it asking you to do?",
+        cat: "Vocabulary Domains — Definition",
+        q: "A word/phrase where the author purposefully selects a higher-level, formal, or text-specific term is a ______________ type of vocabulary word.",
         choices: [
-          "Drop your paper into a recycling container.",
-          "Base or secure your claims firmly using verified text evidence and facts.",
-          "Write using only funny dialogue components.",
-          "Make sure your sentences use short word layouts."
+          "Contextual",
+          "Figurative language",
+          "Character development",
+          "Academic"
         ],
-        correct: 1,
-        feedback: "To anchor your claims means to pin them down securely with text citations so your argument doesn't drift away."
+        correct: 3,
+        feedback: "Correct! Academic vocabulary words represent cross-curricular or domain-specific formal expressions used to explain deep structures."
       },
       {
-        cat: "Vocabulary — Figurative Language",
-        q: "Identify the device used in this sentence: 'The cold winter wind slapped my face as soon as I stepped out.'",
+        cat: "Vocabulary Domains — Application",
+        q: "After getting caught in the rain, Marcus looked like a drowned rat when he arrived at school. What type of phrase is 'drowned rat'?",
         choices: [
-          "Allusion",
-          "Personification",
-          "Academic Metaphor",
-          "FANBOYS Appeal"
+          "Character development word",
+          "Academic word",
+          "Figurative language phrase",
+          "Contextual word"
         ],
-        correct: 1,
-        feedback: "Giving a human physical action ('slapping') to an inanimate natural element (the wind) is personification."
+        correct: 2,
+        feedback: "Correct! 'Drowned rat' is a figurative language phrase (a simile comparison) used to dramatically illustrate his damp appearance."
+      },
+      {
+        cat: "Vocabulary Domains — Application",
+        q: "“I’ll prove them wrong,” she whispered, touching the medal that reminded her of her determination. What type of word is 'determination'?",
+        choices: [
+          "Character development word",
+          "Contextual word",
+          "Figurative language phrase",
+          "Academic word"
+        ],
+        correct: 0,
+        feedback: "Correct! Highlighting 'determination' builds a character development tracking profile showing her inner grit and motivation."
+      },
+      {
+        cat: "Vocabulary Domains — Application",
+        q: "After skipping both breakfast and lunch, Jason felt completely famished and clutched his stomach in hunger. What type of word is 'famished'?",
+        choices: [
+          "Contextual word",
+          "Character development word",
+          "Figurative language phrase",
+          "Academic word"
+        ],
+        correct: 0,
+        feedback: "Correct! You can immediately figure out that 'famished' means extremely hungry by checking the contextual clues of skipping meals and clutching his stomach."
+      },
+      {
+        cat: "Vocabulary Domains — Application",
+        q: "When she saw her little brother had broken her favorite necklace, Mia became incensed and shouted at him. What type of word is 'incensed'?",
+        choices: [
+          "Figurative language phrase",
+          "Academic word",
+          "Character development word",
+          "Contextual word"
+        ],
+        correct: 2,
+        feedback: "Correct! 'Incensed' functions as a character development word here because it captures her immediate emotional reaction and behavioral changes."
       }
     ],
     grammar: [
@@ -604,18 +580,6 @@
         feedback: "Coordinating Adjectives Rule! If you can flip the adjectives around ('playful, energetic puppy') or put 'and' between them ('energetic and playful'), they require a comma!"
       },
       {
-        cat: "Grammar — Coordinating Adjectives",
-        q: "Why does the phrase 'the old wool sweater' NOT use a comma between the adjectives?",
-        choices: [
-          "Because 'old' and 'wool' are not coordinating; you cannot say 'the wool old sweater'.",
-          "Because adjectives describing clothes never receive punctuation markers.",
-          "Because the sentence is missing a FANBOYS conjunction word.",
-          "Because the noun 'sweater' is singular."
-        ],
-        correct: 0,
-        feedback: "These are cumulative adjectives! They must follow a specific structural order to make sense, so no comma is allowed."
-      },
-      {
         cat: "Grammar — Conjunctions (FANBOYS)",
         q: "Which sentence correctly uses a comma with a coordinating conjunction (FANBOYS) to join two independent clauses?",
         choices: [
@@ -626,18 +590,6 @@
         ],
         correct: 0,
         feedback: "When using a FANBOYS word to link two complete sentences, the comma goes immediately BEFORE the conjunction word, never after it."
-      },
-      {
-        cat: "Grammar — Conjunctions (FANBOYS)",
-        q: "Identify the sentence that does NOT need a comma before the conjunction:",
-        choices: [
-          "Sarah completed her entire science reading assignment and then went to softball practice.",
-          "Sarah completed her entire science reading assignment, for she wanted to go to softball practice.",
-          "Sarah completed her entire science reading assignment, so she could go to softball practice.",
-          "Sarah completed her entire science reading assignment, but she forgot her glove."
-        ],
-        correct: 0,
-        feedback: "No comma needed here! 'then went to softball practice' is not a complete sentence on its own, so it shouldn't have a comma before 'and'."
       },
       {
         cat: "Grammar — Commas in a Series",
@@ -678,7 +630,7 @@
     try {
       localStorage.setItem(key, value);
     } catch (e) {
-      // Fallback mode if localStorage is blocked
+      // Fallback if blocked
     }
   }
 
@@ -728,7 +680,6 @@
     let sourceQuestions = DATA[categoryKey];
     if (!sourceQuestions) return;
     
-    // Shuffle question array
     currentPool = [...sourceQuestions].sort(() => Math.random() - 0.5);
     currentQIndex = 0;
     switchScreen('quiz-screen');
@@ -784,7 +735,7 @@
       let correctButton = document.querySelectorAll('.choice-btn')[questionData.correct];
       if (correctButton) correctButton.classList.add('correct');
       
-      fbBox.innerHTML = `✨ Good try! Let's examine:<br>${questionData.feedback}`;
+      fbBox.innerHTML = `✨ Let's examine this card:<br>${questionData.feedback}`;
       fbBox.className = "feedback-box show wrong-fb";
     }
     
@@ -795,7 +746,7 @@
   function nextQuestion() {
     currentQIndex++;
     if (currentQIndex >= currentPool.length) {
-      alert(`🎯 Module complete! High five. Let's see what you can buy!`);
+      alert(`🎯 Module complete! Check your rewards balances to go shopping!`);
       goHome();
     } else {
       renderQuestion();
